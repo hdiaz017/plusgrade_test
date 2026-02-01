@@ -8,6 +8,10 @@ interface Props {
 
 export const TaxResult = ({ result }: Props) => {
    const { effectiveRate, taxesPerBracket, totalTax } = result;
+   // Filter taxable brackets only
+   const filteredBrackets = taxesPerBracket.filter((bracket) => {
+      return bracket.tax !== 0;
+   });
 
    return (
       <section>
@@ -22,7 +26,7 @@ export const TaxResult = ({ result }: Props) => {
             <strong>Effective Rate: </strong>%{effectiveRate.toFixed(3)}
          </div>
 
-         <TableShared taxesPerBracket={taxesPerBracket} />
+         <TableShared taxesPerBracket={filteredBrackets} />
       </section>
    );
 };
