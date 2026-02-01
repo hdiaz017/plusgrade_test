@@ -6,7 +6,6 @@ import { Spinner } from '@/components/ui/spinner';
 
 export const App = () => {
    const { calculation, result, loading, error } = useTaxCalculator();
-   console.log(error);
 
    return (
       <div className='bg-gradient gap-15'>

@@ -44,7 +44,15 @@ export const useTaxForm = ({ calculation }: UseTaxFormParams) => {
       }
 
       calculation(parsedIncome, parsedYear);
-      console.log(errors);
    };
-   return { income, year, errors, setYear, setIncome, handleSubmit };
+   return {
+      // Variables
+      income,
+      year,
+      errors,
+      // Methods
+      setYear,
+      setIncome,
+      handleSubmit,
+   };
 };

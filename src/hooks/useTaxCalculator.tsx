@@ -12,13 +12,11 @@ export const useTaxCalculator = () => {
       setLoading(true);
       setError(null);
       setResult(null);
-      console.log(year);
 
       try {
          const data = await getTaxBrackets(year);
          const calculatedTaxes = calculateTaxes(income, data.tax_brackets);
          setResult(calculatedTaxes);
-         console.log(data);
       } catch {
          setError('Something went wrong. Please try again later.');
       } finally {

@@ -6,8 +6,6 @@ export const getTaxBrackets = async (
    retries = 3,
 ): Promise<TaxApiResponse> => {
    try {
-      // const response = await fetch(BASE_URL);
-
       const { data, status } = await taxApi.get<TaxApiResponse>(`/${year}`);
 
       if (status === 200) return data;
@@ -18,7 +16,7 @@ export const getTaxBrackets = async (
       if (retries > 0) {
          return getTaxBrackets(year, retries - 1);
       }
-      console.log(error);
+
       throw error;
    }
 };
