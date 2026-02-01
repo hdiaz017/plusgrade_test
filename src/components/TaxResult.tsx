@@ -1,44 +1,28 @@
-import React from 'react';
+import type { TaxResult as TaxResultType } from '@/types/tax';
+import { TableShared } from './shared/TableShared';
+import { formatCurrency } from '@/utils/formatUtilities';
 
-export const TaxResult = () => {
+interface Props {
+   result: TaxResultType;
+}
+
+export const TaxResult = ({ result }: Props) => {
+   const { effectiveRate, taxesPerBracket, totalTax } = result;
+
    return (
       <section>
-         <h2>Tax Calculation Result</h2>
+         <h1 className='text-2xl pb-4'>Tax Calculation Result</h1>
 
-         <div>
+         <div className='pb-2'>
             {/* <strong>Total Taxes:</strong> {formatCurrency(result.totalTax)} */}
-            <strong>Total Taxes:</strong> {500}
+            <strong>Total Taxes: </strong> {formatCurrency(totalTax)}
          </div>
 
-         <div>
-            <strong>Effective Rate:</strong>{' '}
-            {/* {formatPercentage(result.effectiveRate)} */}
-            {17.7}
+         <div className='pb-2'>
+            <strong>Effective Rate: </strong>%{effectiveRate.toFixed(3)}
          </div>
 
-         <table>
-            <thead>
-               <tr>
-                  <th>Income Range</th>
-                  <th>Rate</th>
-                  <th>Tax Owed</th>
-               </tr>
-            </thead>
-            <tbody>
-               {/* {result.taxesPerBracket.map((bracket, index) => (
-                  <tr key={index}>
-                     <td>
-                        {formatCurrency(bracket.min)} –{' '}
-                        {bracket.max
-                           ? formatCurrency(bracket.max)
-                           : 'and above'}
-                     </td>
-                     <td>{formatPercentage(bracket.rate)}</td>
-                     <td>{formatCurrency(bracket.tax)}</td>
-                  </tr>
-               ))} */}
-            </tbody>
-         </table>
+         <TableShared taxesPerBracket={taxesPerBracket} />
       </section>
    );
 };
