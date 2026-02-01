@@ -11,15 +11,16 @@ export const useTaxCalculator = () => {
    const calculation = async (income: number, year: number = 2022) => {
       setLoading(true);
       setError(null);
+      setResult(null);
+      console.log(year);
 
       try {
          const data = await fetchTaxBrackets(year);
          const calculatedTaxes = calculateTaxes(income, data.tax_brackets);
          setResult(calculatedTaxes);
          console.log(data);
-         console.log(year);
       } catch {
-         setError('Please try again later.');
+         setError('Something went wrong. Please try again later.');
       } finally {
          setLoading(false);
       }
