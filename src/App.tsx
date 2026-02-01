@@ -1,3 +1,4 @@
+import { ErrorMessage } from './components/ErrorMessage';
 import { TaxForm } from './components/TaxForm';
 import { TaxResult } from './components/TaxResult';
 import { useTaxCalculator } from './hooks/useTaxCalculator';
@@ -20,7 +21,7 @@ export const App = () => {
          )}
 
          {result && <TaxResult result={result} />}
-         {error && error}
+         {error && <ErrorMessage error={error} />}
       </div>
    );
 };
