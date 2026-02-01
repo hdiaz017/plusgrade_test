@@ -1,3 +1,4 @@
+import { ErrorMessage } from './components/ErrorMessage';
 import { TaxForm } from './components/TaxForm';
 import { TaxResult } from './components/TaxResult';
 import { useTaxCalculator } from './hooks/useTaxCalculator';
@@ -5,7 +6,6 @@ import { Spinner } from '@/components/ui/spinner';
 
 export const App = () => {
    const { calculation, result, loading, error } = useTaxCalculator();
-   console.log(error);
 
    return (
       <div className='bg-gradient gap-15'>
@@ -20,7 +20,7 @@ export const App = () => {
          )}
 
          {result && <TaxResult result={result} />}
-         {error && error}
+         {error && <ErrorMessage error={error} />}
       </div>
    );
 };

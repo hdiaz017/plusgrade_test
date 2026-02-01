@@ -1,4 +1,4 @@
-import { fetchTaxBrackets } from '@/api/taxApi';
+import { getTaxBrackets } from '@/api/action/getTaxBrackets.api';
 import type { TaxResult } from '@/types/tax';
 import { calculateTaxes } from '@/utils/calculateTaxes';
 import { useState } from 'react';
@@ -12,13 +12,11 @@ export const useTaxCalculator = () => {
       setLoading(true);
       setError(null);
       setResult(null);
-      console.log(year);
 
       try {
-         const data = await fetchTaxBrackets(year);
+         const data = await getTaxBrackets(year);
          const calculatedTaxes = calculateTaxes(income, data.tax_brackets);
          setResult(calculatedTaxes);
-         console.log(data);
       } catch {
          setError('Something went wrong. Please try again later.');
       } finally {

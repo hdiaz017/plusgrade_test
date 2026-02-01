@@ -26,6 +26,7 @@ export const TaxForm = ({ calculation }: Props) => {
                </FieldLabel>
                <Input
                   id='fieldgroup-income'
+                  data-testid='income-input'
                   placeholder='$'
                   type='number'
                   value={income}
@@ -38,6 +39,7 @@ export const TaxForm = ({ calculation }: Props) => {
                <FieldLabel htmlFor='fieldgroup-year'>Tax Year</FieldLabel>
                <Input
                   id='fieldgroup-year'
+                  data-testid='year-input'
                   type='number'
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
