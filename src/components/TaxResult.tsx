@@ -1,19 +1,24 @@
-import React from 'react';
+import type { TaxResult as TaxResultType } from '@/types/tax';
 
-export const TaxResult = () => {
+interface Props {
+   result: TaxResultType;
+}
+
+export const TaxResult = ({ result }: Props) => {
+   const { effectiveRate, taxesPerBracket, totalTax } = result;
+
    return (
       <section>
          <h2>Tax Calculation Result</h2>
 
          <div>
             {/* <strong>Total Taxes:</strong> {formatCurrency(result.totalTax)} */}
-            <strong>Total Taxes:</strong> {500}
+            <strong>Total Taxes:</strong> {totalTax}
          </div>
 
          <div>
-            <strong>Effective Rate:</strong>{' '}
-            {/* {formatPercentage(result.effectiveRate)} */}
-            {17.7}
+            <strong>Effective Rate:</strong>
+            {effectiveRate}
          </div>
 
          <table>
@@ -25,18 +30,16 @@ export const TaxResult = () => {
                </tr>
             </thead>
             <tbody>
-               {/* {result.taxesPerBracket.map((bracket, index) => (
+               {taxesPerBracket.map((bracket, index) => (
                   <tr key={index}>
                      <td>
-                        {formatCurrency(bracket.min)} –{' '}
-                        {bracket.max
-                           ? formatCurrency(bracket.max)
-                           : 'and above'}
+                        {bracket.min} –{' '}
+                        {bracket.max ? bracket.max : 'and above'}
                      </td>
-                     <td>{formatPercentage(bracket.rate)}</td>
-                     <td>{formatCurrency(bracket.tax)}</td>
+                     <td>{bracket.rate}</td>
+                     <td>{bracket.tax}</td>
                   </tr>
-               ))} */}
+               ))}
             </tbody>
          </table>
       </section>
